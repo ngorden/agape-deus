@@ -1,5 +1,14 @@
 use std::fmt::Formatter;
+use clap::Parser;
 use serde::{Deserialize, Serialize};
+
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+pub struct Args {
+    /// Get the readings for the upcoming sunday mass
+    #[arg(short, long, default_value_t = false)]
+    pub sunday: bool,
+}
 
 #[derive(Serialize, Deserialize)]
 struct Copyright {
