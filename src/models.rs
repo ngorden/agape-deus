@@ -17,13 +17,16 @@ struct Copyright {
 
 #[derive(Serialize, Deserialize)]
 struct MassAntiphon {
-    source: String,
+    source: Option<String>,
     text: String,
 }
 
 impl std::fmt::Display for MassAntiphon {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        writeln!(f, "\t\t{}", self.source)?;
+        let _ = match &self.source {
+            Some(source) => writeln!(f, "\t\t{}", source.as_str()),
+            None => writeln!(f, "")
+        };
         writeln!(f, "{}", self.text)
     }
 }
