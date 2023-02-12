@@ -60,12 +60,12 @@ pub struct UniversalisResponse {
 impl std::fmt::Display for UniversalisResponse {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         writeln!(f, "{}\n{}\n", self.day, self.date)?;
-        writeln!(f, "First Reading:{}\nResponsorial Psalm:{}\n", self.Mass_R1, self.Mass_Ps)?;
+        writeln!(f, "First Reading:{}\n\nThe Word of the Lord\n\nResponsorial Psalm:{}\n", self.Mass_R1, self.Mass_Ps)?;
 
         if self.Mass_R2.is_some() {
-            writeln!(f, "Second Reading:{}\n", self.Mass_R2.as_ref().unwrap())?;
+            writeln!(f, "Second Reading:{}\n\nThe Word of the Lord\n", self.Mass_R2.as_ref().unwrap())?;
         }
 
-        writeln!(f, "Alleluia:{}\nGospel:{}", self.Mass_GA, self.Mass_G)
+        writeln!(f, "Alleluia:{}\n\nA reading from the Holy Gospel according to {}\n\nThe Gospel of the Lord\n", self.Mass_GA, self.Mass_G)
     }
 }
