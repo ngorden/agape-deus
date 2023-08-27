@@ -8,7 +8,7 @@ use crate::models::UniversalisResponse;
 
 
 const REGULAR_EXPRESSION: &str =
-    "(<(div|span) style=.\"(\\w|-|:| |%|;|#|\\.)+.\">)|</*\\w+>|(&#(\\d{3}|(821[0-6,8-9])|(822\\d));)+";
+    "(<(div|span) style=.\"(\\w|-|:| |%|;|#|\\.)+.\">)|</*\\w+>|(&#\\w+).;+";
 
 pub async fn get_readings(next_sunday: bool) -> Result<(), Box<dyn Error>> {
     let today = Local::now();
