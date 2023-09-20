@@ -30,8 +30,8 @@ You will need to have the Rust build utility ``cargo`` installed.
 As this does not appear to be distributed on its own, you will need
 to install Rust.
 
-How you do this will depend on your distribution. But typically, it will be
-something like:
+How you do this will depend on your distribution. For example,
+on Manjaro, you would do as follows:
 
 ```
     $ sudo pamac install rust
