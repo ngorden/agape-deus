@@ -11,7 +11,7 @@ use crate::readings::get_readings;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
-    get_readings(args.sunday).await?;
+    get_readings(args).await?;
     Ok(())
 }
 

@@ -1,6 +1,6 @@
-use crate::models::UniversalisResponse;
+use crate::models::{UniversalisResponse, Args};
 use chrono::format::{DelayedFormat, StrftimeItems};
-use chrono::{Datelike, Duration, Local, Weekday};
+use chrono::{Datelike, Duration, Local, TimeZone, Weekday};
 use regex::Regex;
 use std::error::Error;
 use std::ops::Add;
@@ -9,15 +9,18 @@ use substring::Substring;
 const REGULAR_EXPRESSION: &str =
     "(<(div|span) style=.\"(\\w|-|:| |%|;|#|\\.)+.\">)|</*\\w+>|(&#\\w+).;+";
 
-pub async fn get_readings(next_sunday: bool) -> Result<(), Box<dyn Error>> {
+pub async fn get_readings(args: Args) -> Result<(), Box<dyn Error>> {
     let today = Local::now();
+    let next_sunday = args.sunday;
+
+    let date = Local.timestamp_opt(args.date, 0).single().unwrap_or(today);
 
     let reading_string = format!(
         "https://www.universalis.com/{}/jsonpmass.js",
         if next_sunday {
             get_next_sunday()
         } else {
-            today.format("%Y%m%d")
+            date.format("%Y%m%d")
         }
     );
     let response = reqwest::get(reading_string).await?.text().await?;

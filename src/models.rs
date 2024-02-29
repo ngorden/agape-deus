@@ -8,6 +8,10 @@ pub struct Args {
     /// Get the readings for the upcoming sunday mass
     #[arg(short, long, default_value_t = false)]
     pub sunday: bool,
+
+    /// Get the readings for a specific date - note readings may not be available for dates too far into the past or future
+    #[arg(short, long)]
+    pub date: i64
 }
 
 #[derive(Serialize, Deserialize)]

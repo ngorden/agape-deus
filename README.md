@@ -10,10 +10,10 @@ $ agape --help
 Usage: agape [OPTIONS]
 
 Options:
-  -s, --sunday   Get the readings for the upcoming sunday mass
-  -h, --help     Print help information
-  -V, --version  Print version information
-  
+  -d, --date <DATE> Get the readings for a specific date (expected as a unix timestamp)
+  -s, --sunday      Get the readings for the upcoming sunday mass
+  -h, --help        Print help information
+  -V, --version     Print version information
 ```
 
 # Source
