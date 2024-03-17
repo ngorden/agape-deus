@@ -10,7 +10,7 @@ pub struct Args {
     pub sunday: bool,
 
     /// Get the readings for a specific date - note readings may not be available for dates too far into the past or future
-    #[arg(short, long)]
+    #[arg(short, long, default_value_t = 0)]
     pub date: i64
 }
 

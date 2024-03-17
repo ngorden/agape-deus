@@ -1,4 +1,4 @@
-use crate::models::{UniversalisResponse, Args};
+use crate::models::{Args, UniversalisResponse};
 use chrono::format::{DelayedFormat, StrftimeItems};
 use chrono::{Datelike, Duration, Local, TimeZone, Weekday};
 use regex::Regex;
@@ -13,7 +13,11 @@ pub async fn get_readings(args: Args) -> Result<(), Box<dyn Error>> {
     let today = Local::now();
     let next_sunday = args.sunday;
 
-    let date = Local.timestamp_opt(args.date, 0).single().unwrap_or(today);
+    let date = if args.date == 0 {
+        today
+    } else {
+        Local.timestamp_opt(args.date, 0).single().unwrap_or(today)
+    };
 
     let reading_string = format!(
         "https://www.universalis.com/{}/jsonpmass.js",
