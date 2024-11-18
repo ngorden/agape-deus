@@ -39,7 +39,21 @@ pub async fn get_readings(args: Args) -> Result<(), Box<dyn Error>> {
         .replace_all(&*clean, "'")
         .to_string();
     let reading_formatted: UniversalisResponse = serde_json::from_str(&*clean)?;
-    println!("{}", reading_formatted);
+
+    match args.isolate {
+        0 => print!("{}", reading_formatted),
+        1 => print!("{}", reading_formatted.Mass_R1),
+        2 => print!("{}", reading_formatted.Mass_Ps),
+        3 => print!(
+            "{}",
+            reading_formatted
+                .Mass_R2
+                .unwrap_or(reading_formatted.Mass_R1)
+        ),
+        4 => print!("{}", reading_formatted.Mass_GA),
+        5 => print!("{}", reading_formatted.Mass_G),
+        _ => print!("{}", reading_formatted),
+    }
 
     Ok(())
 }
